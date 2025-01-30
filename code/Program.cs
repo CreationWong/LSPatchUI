@@ -1,4 +1,4 @@
-namespace LSPatchUI
+namespace LSPatchUI.code
 {
     internal static class Program
     {
