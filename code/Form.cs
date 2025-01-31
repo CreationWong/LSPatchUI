@@ -242,5 +242,92 @@ namespace LSPatchUI
                 textBoxOUTPath.Text = FBDialog.SelectedPath;
             }
         }
+
+        private void Public_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void Public_textBoxPath_DragDrop(object sender, DragEventArgs e)
+        {
+            TextBox textBoxPath = sender as TextBox;
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if (files.Length > 0)
+                {
+                    string filePath = files[0];
+
+                    string extension = Path.GetExtension(filePath).ToLower();
+                    string fileName = Path.GetFileName(filePath);
+
+                    switch (textBoxPath.Name)
+                    {
+                        case "textBoxAPKPath":
+                            if (extension == ".apk")
+                            {
+                                textBoxPath.Text = filePath;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"拖入文件错误,不符合要求! 请拖入: APK 文件! \n拖入文件为: {filePath}", "用户操作错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            break;
+
+                        case "textBoxJarPath":
+                            if (fileName == "lspatch.jar")
+                            {
+                                textBoxPath.Text = filePath;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"拖入文件错误,不符合要求! 请拖入: lspatch.jar 文件! \n拖入文件为: {filePath}", "用户操作错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            break;
+
+                        case "textBoxJavaPath":
+                            if (fileName == "java.exe")
+                            {
+                                textBoxPath.Text = filePath;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"拖入文件错误,不符合要求! 请拖入: java.exe 文件! \n拖入文件为: {filePath}", "用户操作错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            break;
+
+                        default:
+                            MessageBox.Show($"该程序出现意料之外的错误。\n错误位置为: Public_textBoxPath_DragDrop -> switch (textBoxPath.Name) 。\n值为{textBoxPath.Name} 。", "程序内部错误 (BUG)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void listBoxMod_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                for (global::System.Int32 i = 0; i < files.Length; i++)
+                {
+                    string filePath = files[i];
+
+                    string extension = Path.GetExtension(filePath).ToLower();
+                    string fileName = Path.GetFileName(filePath);
+
+                    if (extension == ".apk")
+                    {
+                        if (!(listBoxMod.Items.Cast<string>().Any(item => item.StartsWith($"{fileName}"))))
+                        {
+                            listBoxMod.Items.Add($"{fileName} ({filePath})");
+                        }
+                    }
+                }
+            }
+        }
     }
 }

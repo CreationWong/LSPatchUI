@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             MAIN = new Panel();
+            checkBoxAPKDebug = new CheckBox();
+            checkBoxNewVersion = new CheckBox();
             ButtonSave = new Button();
             label6 = new Label();
             textBoxOUTPath = new TextBox();
@@ -49,8 +51,6 @@
             label1 = new Label();
             ButtonAdd = new Button();
             listBoxMod = new ListBox();
-            checkBoxNewVersion = new CheckBox();
-            checkBoxAPKDebug = new CheckBox();
             MAIN.SuspendLayout();
             SuspendLayout();
             // 
@@ -82,6 +82,26 @@
             MAIN.Name = "MAIN";
             MAIN.Size = new Size(519, 417);
             MAIN.TabIndex = 0;
+            // 
+            // checkBoxAPKDebug
+            // 
+            checkBoxAPKDebug.AutoSize = true;
+            checkBoxAPKDebug.Location = new Point(196, 269);
+            checkBoxAPKDebug.Name = "checkBoxAPKDebug";
+            checkBoxAPKDebug.Size = new Size(114, 24);
+            checkBoxAPKDebug.TabIndex = 7;
+            checkBoxAPKDebug.Text = "Debug 模式";
+            checkBoxAPKDebug.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxNewVersion
+            // 
+            checkBoxNewVersion.AutoSize = true;
+            checkBoxNewVersion.Location = new Point(308, 239);
+            checkBoxNewVersion.Name = "checkBoxNewVersion";
+            checkBoxNewVersion.Size = new Size(121, 24);
+            checkBoxNewVersion.TabIndex = 7;
+            checkBoxNewVersion.Text = "重定义版本号";
+            checkBoxNewVersion.UseVisualStyleBackColor = true;
             // 
             // ButtonSave
             // 
@@ -150,11 +170,14 @@
             // 
             // textBoxJavaPath
             // 
+            textBoxJavaPath.AllowDrop = true;
             textBoxJavaPath.Location = new Point(196, 81);
             textBoxJavaPath.Name = "textBoxJavaPath";
             textBoxJavaPath.ReadOnly = true;
             textBoxJavaPath.Size = new Size(213, 27);
             textBoxJavaPath.TabIndex = 9;
+            textBoxJavaPath.DragDrop += Public_textBoxPath_DragDrop;
+            textBoxJavaPath.DragEnter += Public_DragEnter;
             // 
             // comboBoxLv
             // 
@@ -180,12 +203,15 @@
             // 
             // textBoxJarPath
             // 
+            textBoxJarPath.AllowDrop = true;
             textBoxJarPath.Location = new Point(196, 143);
             textBoxJarPath.Name = "textBoxJarPath";
             textBoxJarPath.ReadOnly = true;
             textBoxJarPath.Size = new Size(213, 27);
             textBoxJarPath.TabIndex = 0;
             textBoxJarPath.TabStop = false;
+            textBoxJarPath.DragDrop += Public_textBoxPath_DragDrop;
+            textBoxJarPath.DragEnter += Public_DragEnter;
             // 
             // ButtonDelete
             // 
@@ -245,6 +271,8 @@
             textBoxAPKPath.Size = new Size(406, 27);
             textBoxAPKPath.TabIndex = 0;
             textBoxAPKPath.TabStop = false;
+            textBoxAPKPath.DragDrop += Public_textBoxPath_DragDrop;
+            textBoxAPKPath.DragEnter += Public_DragEnter;
             // 
             // label1
             // 
@@ -267,32 +295,15 @@
             // 
             // listBoxMod
             // 
+            listBoxMod.AllowDrop = true;
             listBoxMod.FormattingEnabled = true;
             listBoxMod.ItemHeight = 20;
             listBoxMod.Location = new Point(3, 81);
             listBoxMod.Name = "listBoxMod";
             listBoxMod.Size = new Size(150, 324);
             listBoxMod.TabIndex = 3;
-            // 
-            // checkBoxNewVersion
-            // 
-            checkBoxNewVersion.AutoSize = true;
-            checkBoxNewVersion.Location = new Point(308, 239);
-            checkBoxNewVersion.Name = "checkBoxNewVersion";
-            checkBoxNewVersion.Size = new Size(121, 24);
-            checkBoxNewVersion.TabIndex = 7;
-            checkBoxNewVersion.Text = "重定义版本号";
-            checkBoxNewVersion.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAPKDebug
-            // 
-            checkBoxAPKDebug.AutoSize = true;
-            checkBoxAPKDebug.Location = new Point(196, 269);
-            checkBoxAPKDebug.Name = "checkBoxAPKDebug";
-            checkBoxAPKDebug.Size = new Size(114, 24);
-            checkBoxAPKDebug.TabIndex = 7;
-            checkBoxAPKDebug.Text = "Debug 模式";
-            checkBoxAPKDebug.UseVisualStyleBackColor = true;
+            listBoxMod.DragDrop += listBoxMod_DragDrop;
+            listBoxMod.DragEnter += Public_DragEnter;
             // 
             // Form
             // 
