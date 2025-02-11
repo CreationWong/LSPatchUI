@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LSPatchUI
 {
@@ -7,6 +8,21 @@ namespace LSPatchUI
         public Form()
         {
             InitializeComponent();
+        }
+
+        string confPath = Path.Combine(Application.StartupPath + "\\conf.ini");
+        private void Main_Load(object sender, EventArgs e)
+        {
+            IniFile iniFile = new IniFile(confPath);
+
+            if (iniFile.Read("User Configuration", "JarPath") != null) {
+                textBoxJarPath.Text = iniFile.Read("User Configuration", "JarPath");
+            }
+
+            if (iniFile.Read("User Configuration", "JavaPath") != null)
+            {
+                textBoxJavaPath.Text = iniFile.Read("User Configuration", "JavaPath");
+            }
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -35,34 +51,18 @@ namespace LSPatchUI
 
         private void ButtonAPKAdd_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            openFileDialog.Filter = "APK Files (*.apk)|*.apk";
-
-            openFileDialog.Title = "选择被修改的 APK 文件";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string selectedFilePath = openFileDialog.FileName;
-
-                textBoxAPKPath.Text = selectedFilePath;
-            }
+            textBoxAPKPath.Text = OpenFileFunc("选择被修改的 APK 文件", "APK Files (*.apk)|*.apk");
         }
 
         private void ButtonJar_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            IniFile iniFile = new IniFile(confPath);
 
-            openFileDialog.Filter = "LSPatch.jar |lspatch.jar";
+            string Path = OpenFileFunc("选择 LSPatch.jar 文件", "LSPatch.jar |lspatch.jar");
 
-            openFileDialog.Title = "选择 LSPatch.jar 文件";
+            iniFile.Write("User Configuration", "JarPath", Path);
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string selectedFilePath = openFileDialog.FileName;
-
-                textBoxJarPath.Text = selectedFilePath;
-            }
+            textBoxJarPath.Text = Path;
         }
 
         private void ButtonDelete_Click(object sender, EventArgs e)
@@ -218,18 +218,13 @@ namespace LSPatchUI
 
         private void ButtonJava_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            IniFile iniFile = new IniFile(confPath);
 
-            openFileDialog.Filter = "java |java.exe";
+            string path = OpenFileFunc("选择 Java 执行环境", "java |java.exe");
 
-            openFileDialog.Title = "选择 Java 执行环境";
+            iniFile.Write("User Configuration", "JavaPath", path);
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string selectedFilePath = openFileDialog.FileName;
-
-                textBoxJavaPath.Text = selectedFilePath;
-            }
+            textBoxJavaPath.Text = path;
         }
 
         private void ButtonSave_Click(object sender, EventArgs e)
@@ -328,6 +323,22 @@ namespace LSPatchUI
                     }
                 }
             }
+        }
+
+        private static string OpenFileFunc(string title, string filter)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Title = title;
+
+            openFileDialog.Filter = filter;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                return openFileDialog.FileName;
+            }
+            // 如果用户取消操作则返回 NULL
+            return null;
         }
     }
 }
