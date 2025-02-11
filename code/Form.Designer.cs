@@ -316,6 +316,7 @@
             MinimizeBox = false;
             Name = "Form";
             Text = "LSPatchUI";
+            Load += Main_Load;
             MAIN.ResumeLayout(false);
             MAIN.PerformLayout();
             ResumeLayout(false);
