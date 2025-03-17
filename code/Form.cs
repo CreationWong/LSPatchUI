@@ -98,7 +98,7 @@ namespace LSPatchUI
                 return;
             }
 
-            string command = $"{javaPath} -jar \"{jarPath}\" \"{apkPath}\"";
+            string command = $" -jar \"{jarPath}\" \"{apkPath}\"";
 
             if (string.IsNullOrWhiteSpace(jarPath))
             {
@@ -159,7 +159,7 @@ namespace LSPatchUI
                 command += $" -o {outPath}";
             }
 
-            ExecuteCommand(command);
+            ExecuteCommand(command, javaPath);
 
         }
 
@@ -192,14 +192,15 @@ namespace LSPatchUI
             }
         }
 
-        private void ExecuteCommand(string command)
+        private void ExecuteCommand(string command,string JavaPath)
         {
             try
             {
                 ProcessStartInfo processStartInfo = new ProcessStartInfo
                 {
-                    FileName = "cmd.exe",
-                    Arguments = $"/c {command}",
+                    //FileName = "cmd.exe",
+                    FileName = JavaPath,
+                    Arguments = $"{command}",
                 };
 
                 using (Process process = new Process())

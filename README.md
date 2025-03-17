@@ -16,14 +16,13 @@
   - [x] 拖放
 - [ ] 集成 JAVA 。
 - [ ] 集成 ADB 。
-- [ ] 移除对 CMD 依赖。
+- [x] 移除对 CMD 依赖。
 - [ ] 其他规划
 
 ## 安装与运行 🚀
 
 ### 环境要求
 - [.NET 6.0 Runtime](https://dotnet.microsoft.com/download/dotnet/6.0)
-- CMD (预计将放弃使用)
 - [lspatch.jar](https://github.com/LSPosed/LSPatch/releases)
   - [Java 21](https://javaalmanac.io/jdk/21/)
 
