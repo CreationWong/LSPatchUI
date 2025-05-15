@@ -56,6 +56,7 @@
             // 
             // MAIN
             // 
+            MAIN.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             MAIN.Controls.Add(checkBoxAPKDebug);
             MAIN.Controls.Add(checkBoxNewVersion);
             MAIN.Controls.Add(ButtonSave);
@@ -80,7 +81,7 @@
             MAIN.Controls.Add(listBoxMod);
             MAIN.Location = new Point(12, 12);
             MAIN.Name = "MAIN";
-            MAIN.Size = new Size(519, 417);
+            MAIN.Size = new Size(519, 419);
             MAIN.TabIndex = 0;
             // 
             // checkBoxAPKDebug
@@ -105,7 +106,7 @@
             // 
             // ButtonSave
             // 
-            ButtonSave.Location = new Point(415, 318);
+            ButtonSave.Location = new Point(415, 324);
             ButtonSave.Name = "ButtonSave";
             ButtonSave.Size = new Size(94, 29);
             ButtonSave.TabIndex = 15;
@@ -116,7 +117,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(196, 297);
+            label6.Location = new Point(196, 303);
             label6.Name = "label6";
             label6.Size = new Size(62, 20);
             label6.TabIndex = 14;
@@ -124,7 +125,7 @@
             // 
             // textBoxOUTPath
             // 
-            textBoxOUTPath.Location = new Point(196, 320);
+            textBoxOUTPath.Location = new Point(196, 326);
             textBoxOUTPath.Name = "textBoxOUTPath";
             textBoxOUTPath.ReadOnly = true;
             textBoxOUTPath.Size = new Size(213, 27);
@@ -225,7 +226,7 @@
             // 
             // ButtonRUN
             // 
-            ButtonRUN.Location = new Point(196, 353);
+            ButtonRUN.Location = new Point(196, 359);
             ButtonRUN.Name = "ButtonRUN";
             ButtonRUN.Size = new Size(319, 52);
             ButtonRUN.TabIndex = 8;
@@ -309,7 +310,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(543, 439);
+            ClientSize = new Size(543, 441);
             Controls.Add(MAIN);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;

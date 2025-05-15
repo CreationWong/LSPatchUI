@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 # JetBrains IDE
 .idea/
+
+# Setup
+setup/Source/*

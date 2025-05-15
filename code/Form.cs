@@ -58,7 +58,7 @@ namespace LSPatchUI
         {
             IniFile iniFile = new IniFile(confPath);
 
-            string Path = OpenFileFunc("选择 LSPatch.jar 文件", "LSPatch.jar |lspatch.jar");
+            string Path = OpenFileFunc("选择 LSPatch.jar 文件", "LSPatch.jar |*.jar");
 
             iniFile.Write("User Configuration", "JarPath", Path);
 
@@ -192,6 +192,7 @@ namespace LSPatchUI
             }
         }
 
+        // 执行拼合后的命令
         private void ExecuteCommand(string command,string JavaPath)
         {
             try
@@ -331,6 +332,7 @@ namespace LSPatchUI
             }
         }
 
+        // 选择文件
         private static string OpenFileFunc(string title, string filter)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();

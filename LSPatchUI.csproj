@@ -16,4 +16,10 @@
     <DebugType>embedded</DebugType>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="setup\out\**" />
+    <EmbeddedResource Remove="setup\out\**" />
+    <None Remove="setup\out\**" />
+  </ItemGroup>
+
 </Project>
